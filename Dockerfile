@@ -7,4 +7,3 @@ COPY plugins.txt /plugins.txt
 RUN /usr/local/bin/plugins.sh /plugins.txt
 EXPOSE 8080
 ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
-#CMD ["/bin/bash"]

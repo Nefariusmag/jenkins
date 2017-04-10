@@ -10,13 +10,13 @@ build:
 	docker build -t $(SYSTEM)/$(APP):$(VERSION) .
 
 run:
-	docker run --rm --name $(APP)-$(VERSION) -it -p $(PORTS):8080 $(SYSTEM)/$(APP):$(VERSION) /bin/bash
+	docker run --rm --name $(APP)-$(VERSION) -it -p $(PORTS):8080 $(SYSTEM)/$(APP):$(VERSION)
 
 start:
 	docker run -d --name $(APP)-$(VERSION) -p $(PORTS):8080 $(SYSTEM)/$(APP):$(VERSION)
 
 exec:
-	docker exec --user $(USER) -it $(APP)-$(VERSION)  /bin/bash
+	docker exec --user $(USER) -it $(APP)-$(VERSION) /bin/bash
 
 stop:
 	docker stop $(APP)-$(VERSION)
