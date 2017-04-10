@@ -1,6 +1,6 @@
 SYSTEM = nefariusmag
 APP = jenkins
-VERSION = 2.0
+VERSION = 2.1
 PORTS = 8000
 USER = root
 

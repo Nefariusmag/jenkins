@@ -1,0 +1,15 @@
+ant:1.4
+ansible:0.6.2
+git:3.2.0
+git-client:2.4.0
+git-parameter:0.8.0
+maven-plugin:2.15.1
+ansicolor:0.5.0
+cloudbees-folder:6.0.3
+parameterized-scheduler:0.3.1
+mask-passwords:2.9
+jenkins-multijob-plugin:1.24
+rebuild:1.25
+envinject:1.93.1
+ws-cleanup:0.32
+ldap:1.14
