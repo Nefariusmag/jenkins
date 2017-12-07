@@ -1,0 +1,30 @@
+version: '2'
+services:
+  jenkins:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nefariusmag/jenkins:2.1.14
+    container_name: jenkins
+    restart: always
+    volumes:
+      - ./files/jenkins_home/:/var/jenkins_home/
+    ports:
+      - 80:8080
+    # networks:
+    #   - bridge
+    # deploy:
+    #   replicas: 1
+    #   resources:
+    #     limits:
+    #       cpus: '0.001'
+    #       memory: 50M
+    #     reservations:
+    #       cpus: '0.0001'
+    #       memory: 20M
+    # environment:
+    #   JENKINS_UC: https://updates.jenkins.io
+    #   POSTGRES_PASSWORD: 'postgres'
+
+# networks:
+#   bridge:

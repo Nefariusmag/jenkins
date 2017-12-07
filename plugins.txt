@@ -1,6 +1,11 @@
+handlebars:1.1.1
+momentjs:1.1.1
+jquery-detached:1.2.1
+timestamper:1.8.8
+antisamy-markup-formatter:1.5
 structs:1.10
 built-on-column:1.1
-script-security:1.34
+script-security:1.36
 ace-editor:1.1
 workflow-step-api:2.13
 scm-api:2.2.2
@@ -14,6 +19,7 @@ cloudbees-folder:6.1.2
 parameterized-scheduler:0.3.1
 mask-passwords:2.10
 rebuild:1.25
+project-inheritance:2.0.0
 ws-cleanup:0.32
 ldap:1.14
 credentials:2.1.16
@@ -22,7 +28,7 @@ workflow-api:2.20
 workflow-basic-steps:2.4
 workflow-scm-step:2.6
 workflow-support:2.14
-workflow-job:2.12.2
+workflow-job:2.16
 token-macro:2.3
 nant:1.4.3
 junit:1.21
@@ -54,3 +60,8 @@ config-file-provider:2.16.3
 ivy:1.27.1
 copyartifact:1.38.1
 jenkins-multijob-plugin:1.28
+uno-choice:2.0
+pipeline-build-step:2.6
+pipeline-utility-steps:1.5.1
+pipeline-rest-api:2.9
+pipeline-stage-view:2.9

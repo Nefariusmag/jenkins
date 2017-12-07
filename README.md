@@ -1,7 +1,7 @@
 
 Info:
 
-Jenkins ver. 2.46.1
+Jenkins ver. 2.60.3
 Plugins in plugins.txt
 
 Files:
@@ -13,9 +13,10 @@ plugins.txt
 
 Setup:
 
-git clone git@github.com:Nefariusmag/jenkins.git jenkins
-make build
-make run
+git clone git@github.com:Nefariusmag/jenkins.git
+cd jenkins
+docker-compose up
+
 
 Then go to http://localhost:8000/ and ignore install plugins.
 
