@@ -1,26 +1,38 @@
-
 Info:
 
-Jenkins ver. 2.60.3
+Jenkins ver. 2.89.3
 Plugins in plugins.txt
 
 Files:
 
 Dockerfile
-Makefile
+docker-compose.yml
 README.md
-plugins.txt
+plugins.txt - version of plugins for jenkins
+requirements.txt - version for apps for install from pip
+ssh_config
+jenkins_home/
 
 Setup:
 
-git clone git@github.com:Nefariusmag/jenkins.git
-cd jenkins
-docker-compose up
+CentOS:
+sudo yum install docker epel-release python-pip -y
+sudo pip install docker-compose
 
+Clone git repo
+```
+git clone git@github.com:Nefariusmag/jenkins.git && cd jenkins
+chown -R 1000 jenkins_home
+docker-compose up -d
+```
 
-Then go to http://localhost:8000/ and ignore install plugins.
+Then go to http://localhost/.
 
 History:
+
+---2.4
+
+Сохраняю стартовые конфигурации в jenkins_home, чтобы не надо было настраивать jenkins c нуля
 
 ---2.1
 

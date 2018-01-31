@@ -1,7 +1,4 @@
 files/
-
-ssh_jenkins/
-
-ssh_root/
+ssh_jenkins/ 
 
 \.dockerignore

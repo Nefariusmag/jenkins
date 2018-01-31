@@ -1,35 +1,24 @@
-FROM jenkins:2.60.3
-MAINTAINER Erokhin Dmitry <i9164871362@gmail.com>
+FROM jenkinsci/jenkins:lts
+MAINTAINER Erokhin Dmitry <nefariusmag@gmail.com>
 USER root
 # установка нужных программ для работы
 RUN apt-get update -y && apt-get install -y python3 python3-pip zip sudo sshpass git python-pip curl php
-RUN pip3 install ansible pysphere pywinrm psycopg2
-RUN pip install pysphere
-# прокидывание ключей для root
-RUN mkdir /root/.ssh
-COPY ssh_root/* /root/.ssh/
+COPY requirements.txt /opt/requirements.txt
+RUN pip install -r /opt/requirements.txt && \
+    rm /opt/requirements.txt
 # Настройка сетевых правил
 COPY ssh_config /etc/ssh/ssh_config
-# выдача sudo прав jenkins
-RUN echo "jenkins ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
-# # Инсталяция java и maven для ГИСТЭК
-RUN wget -q http://distr-repo-i.gistek.lanit.ru/repo/3rd-party/oracle/jdk/1.8/install_java8_bin.sh -O /opt/install_java8_bin.sh
-RUN chmod +x /opt/install_java8_bin.sh && /opt/install_java8_bin.sh
-# RUN wget -q http://distr-repo-i.gistek.lanit.ru/repo/3rd-party/apache/maven/3.5.0/apache-maven-3.5.0-bin.tar.gz -O /opt/apache-maven-3.5.0-bin.tar.gz
-# RUN cd /opt && tar xzvf /opt/apache-maven-3.5.0-bin.tar.gz && ln -s /opt/apache-maven-3.5.0 maven
-# RUN echo "PATH=$PATH:/opt/apache-maven-3.5.0/bin" >> /etc/profile.d/01_jdk8.sh
-# RUN wget -q http://distr-repo-i.gistek.lanit.ru/repo/3rd-party/apache/maven/maven_repository.zip -O /home/jenkins/.m2/maven_repository.zip
-# RUN cd /home/jenkins/.m2/ && unzip maven_repository.zip
-RUN wget -q https://github.com/sbt/sbt/releases/download/v1.0.2/sbt-1.0.2.tgz -O /opt/sbt-1.0.2.tgz
-RUN cd /opt && tar xzf sbt-1.0.2.tgz
 # установка плагинов для jenkins
 COPY plugins.txt /plugins.txt
 RUN /usr/local/bin/plugins.sh /plugins.txt
-# прокидывание ключей для jenkins
+RUN wget -q https://releases.hashicorp.com/packer/1.1.3/packer_1.1.3_linux_amd64.zip && \
+    unzip packer_1.1.3_linux_amd64.zip && mv packer /bin/packer
+# Скачиваем новейшую версию
+# RUN wget -q http://updates.jenkins-ci.org/latest/jenkins.war -O /usr/share/jenkins/jenkins.war
 USER jenkins
-RUN mkdir /var/jenkins_home/.ssh
-COPY ssh_jenkins/* /var/jenkins_home/.ssh/
 # настройка общих параметров и запуск приложения
+RUN git config --global user.email "nefariusmag@gmail.com"
+RUN git config --global user.name "Erokhin Dmitry"
 VOLUME ["/var/jenkins_home"]
 EXPOSE 8080
-ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
+ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/jenkins.sh"]
